@@ -13,6 +13,7 @@ import {Supervisor} from "./components/requisites/Supervisor";
 import {StateRegistrationOfLegal} from "./components/requisites/StateRegistrationOfLegal";
 import {SubjectHistory} from "./components/requisites/SubjectHistory";
 import {SubjectHistoryEvent} from "./components/requisites/SubjectHistoryEvent";
+import ContragentsContainer from './components/contragents/ContragentsContainer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
     <Route exact path='/requisites/subjectHistory' component={SubjectHistory}/>
     <Route exact path='/requisites/subjectHistory/:id' component={SubjectHistoryEvent}/>
     <Route path='/notifications' component={MailSender}/>
+    <Route path='/contragents' component={ContragentsContainer}/>
     </Switch>
       </BrowserRouter>
   );
