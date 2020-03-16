@@ -9,5 +9,5 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 @ParametersAreNonnullByDefault
 public interface CrudManager<T> extends BaseManager<T> {
-    void delete(T t);
+    void delete(String id);
 }

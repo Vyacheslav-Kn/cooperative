@@ -52,11 +52,13 @@ public class PropertyManagerImpl extends BaseManagerImpl<PropertyRepository, Pro
                                                 propertyOwner.getPersonId(),
                                                 propertyOwner.getStartDate(),
                                                 propertyOwner.getOwningPercent(),
+                                                propertyOwner.getNumberAuthority(),
                                                 endDate
                                         ))
                                         .collect(Collectors.toList())
                         );
-                    }}
+                    }},
+                    property.getPtn()
             );
             return mongoRepository.save(updatedProperty);
         }

@@ -20,6 +20,7 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
                 entity.getId(),
                 entity.getInventoryNumber(),
                 entity.getSquare(),
+                entity.getPtn(),
                 entity.getOwners() == null ? Collections.emptyList() : entity.getOwners().stream().map(ownerEntityMapper::toDto).collect(Collectors.toList()),
                 entity.getHistoryOwners() == null ? Collections.emptyList() : entity.getHistoryOwners().stream().map(historyOwnerEntityMapper::toDto).collect(Collectors.toList())
         );
@@ -32,7 +33,8 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
                 dto.getInventoryNumber(),
                 dto.getSquare(),
                 dto.getOwners() == null ? Collections.emptyList() : dto.getOwners().stream().map(ownerEntityMapper::fromDto).collect(Collectors.toList()),
-                Collections.emptyList()
+                Collections.emptyList(),
+                dto.getPtn()
         );
     }
 
@@ -43,7 +45,8 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
             return new PropertyEntity.PropertyOwner(
                     entity.getPersonId(),
                     entity.getStartDate(),
-                    entity.getOwningPercent()
+                    entity.getOwningPercent(),
+                    entity.getNumberAuthority()
             );
         }
 
@@ -52,7 +55,8 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
             return new Property.PropertyOwner(
                     dto.getPersonId(),
                     dto.getStartDate(),
-                    dto.getOwningPercent()
+                    dto.getOwningPercent(),
+                    dto.getNumberAuthority()
             );
         }
 
@@ -66,7 +70,8 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
                     entity.getPersonId(),
                     entity.getStartDate(),
                     entity.getOwningPercent(),
-                    entity.getEndDate()
+                    entity.getEndDate(),
+                    entity.getNumberAuthority()
             );
         }
 
@@ -76,6 +81,7 @@ public class PropertyEntityMapper implements EntityMapper<PropertyEntity, Proper
                     dto.getPersonId(),
                     dto.getStartDate(),
                     dto.getOwningPercent(),
+                    dto.getNumberAuthority(),
                     dto.getEndDate()
             );
         }

@@ -1,5 +1,7 @@
 [
   {
+    "_id": "agreement",
+    "type": "SPECIAL",
     "name": "Соглашение",
     "path": "Соглашение_шаблон.docx",
     "tags": [
@@ -19,6 +21,8 @@
     ]
   },
   {
+    "_id": "vicarious_authority",
+    "type": "SPECIAL",
     "name": "Доверенность",
     "path": "00 Бланк Доверенности_.docx",
     "tags": [
@@ -34,6 +38,8 @@
     ]
   },
   {
+    "_id": "equipment_transfer_act",
+    "type": "SPECIAL",
     "name": "Акт приёмки передачи оборудования",
     "path": "Акт передачи оборудования.docx",
     "tags": [
@@ -52,6 +58,8 @@
     ]
   },
   {
+    "_id": "registration_sheet",
+    "type": "SPECIAL",
     "name": "Регистрационный лист",
     "path": "Регистрационный лист.docx",
     "tags": [
@@ -63,6 +71,8 @@
     ]
   },
   {
+    "_id": "defective_act",
+    "type": "SPECIAL",
     "name": "Заявление на дефектный акт",
     "path": "Заявление_шаблон на деф акт.docx",
     "tags": [

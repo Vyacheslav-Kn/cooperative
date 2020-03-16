@@ -2,6 +2,7 @@ package by.bsuir.document.model.template;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,8 +19,12 @@ import java.util.List;
 @Document(collection = "template")
 public class Template {
     @Id
-    @MongoId(value = FieldType.OBJECT_ID)
+    @MongoId(value = FieldType.STRING, targetType = FieldType.STRING)
     private String id;
+
+    @Field
+    @NotNull
+    private EntityType type;
 
     @Field
     @NotNull
@@ -32,7 +37,7 @@ public class Template {
 
     @Field
     @NotNull
-    private List<CompositeTag> compositeTags;
+    private List<String> compositeTags;
 
     @Field
     @NotNull

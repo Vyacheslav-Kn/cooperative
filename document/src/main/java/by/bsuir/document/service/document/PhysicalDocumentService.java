@@ -19,4 +19,11 @@ public interface PhysicalDocumentService {
      * @param outputPath Output dir
      */
     void generate(Template template, Map<Tag.Param, String> params, String outputPath);
+
+    /**
+     * Method open physical document at specified path.
+     *
+     * @param path Path to document
+     */
+    void open(String path);
 }

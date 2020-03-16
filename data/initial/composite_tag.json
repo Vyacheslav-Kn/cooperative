@@ -1,16 +1,19 @@
 [
   {
-    "id": "BANK_VC",
+    "_id": "BANK_VC",
+    "type": "SPECIAL",
     "name": "Визитка банковская",
     "tags": []
   },
   {
-    "id": "POST_VC",
+    "_id": "POST_VC",
+    "type": "SPECIAL",
     "name": "Визитка почтовая",
     "tags": []
   },
   {
-    "id": "CONTRACT_VC",
+    "_id": "CONTRACT_VC",
+    "type": "SPECIAL",
     "name": "Визитка договора",
     "tags": [
       "ORG_NAME",
@@ -22,7 +25,8 @@
     ]
   },
   {
-    "id": "PROPRIETOR_VC",
+    "_id": "PROPRIETOR_VC",
+    "type": "SPECIAL",
     "name": "Визитка собственника",
     "tags": [
       "FAMILY",
@@ -39,7 +43,8 @@
     ]
   },
   {
-    "id": "PROPERTY_VC",
+    "_id": "PROPERTY_VC",
+    "type": "SPECIAL",
     "name": "Визитка недвижимости",
     "tags": []
   }

@@ -5,6 +5,7 @@ import by.bsuir.document.processor.TagProcessor;
 import by.bsuir.registry.model.Person;
 import by.bsuir.registry.service.PersonManager;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import static by.bsuir.document.model.template.Tag.Param.PERSON_ID;
  * @author Vladislav Novitskiy
  */
 @AllArgsConstructor
+@Component
 public class PaspProcessor implements TagProcessor {
     private PersonManager personManager;
 

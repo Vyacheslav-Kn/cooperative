@@ -46,6 +46,14 @@ public class CommunicationManagerImpl extends BaseManagerImpl<CommunicationRepos
     }
 
     @Override
+    public Collection<Communication> findByPersonId(Collection<String> ids) {
+        if (personBaseManager.find(ids) != null) {
+            return mongoRepository.findByPersonIdIn(ids);
+        }
+        throw new DataManipulateException();
+    }
+
+    @Override
     public Communication update(Communication communication) {
         if (personBaseManager.find(communication.getPersonId()) != null
                 && mongoRepository.findById(communication.getId()).isPresent()) {

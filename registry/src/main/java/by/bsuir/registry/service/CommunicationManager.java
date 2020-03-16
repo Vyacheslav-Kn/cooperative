@@ -12,6 +12,8 @@ public interface CommunicationManager extends BaseManager<Communication> {
 
     Collection<Communication> findByPersonId(String id) throws DataManipulateException;
 
+    Collection<Communication> findByPersonId(Collection<String> id) throws DataManipulateException;
+
     void delete(Communication communication) throws DataManipulateException;
 
 }

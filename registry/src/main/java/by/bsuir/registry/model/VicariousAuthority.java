@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Document(collection = "vicarious_authority")
 public class VicariousAuthority {
 
+    // TODO: 15.03.2020 Change FiledType to Integer
     @Id
     @MongoId(FieldType.OBJECT_ID)
     private String id;

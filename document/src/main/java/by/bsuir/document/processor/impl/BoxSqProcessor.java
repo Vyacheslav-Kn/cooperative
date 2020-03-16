@@ -5,6 +5,7 @@ import by.bsuir.document.processor.TagProcessor;
 import by.bsuir.registry.model.Property;
 import by.bsuir.registry.service.PropertyManager;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import static by.bsuir.document.model.template.Tag.Param.PROPERTY_ID;
  * @author Vladislav Novitskiy
  */
 @AllArgsConstructor
+@Component
 public class BoxSqProcessor implements TagProcessor {
     private PropertyManager propertyManager;
 

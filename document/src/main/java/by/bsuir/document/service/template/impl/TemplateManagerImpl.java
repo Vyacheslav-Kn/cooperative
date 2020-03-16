@@ -5,10 +5,11 @@ import by.bsuir.core.service.impl.CrudManagerImpl;
 import by.bsuir.document.model.template.Template;
 import by.bsuir.document.repository.TemplateRepository;
 import by.bsuir.document.service.template.TemplateManager;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import static by.bsuir.document.model.template.EntityType.SPECIAL;
 
 /**
  * Default implementation of {@link TemplateManager}.
@@ -23,9 +24,12 @@ public class TemplateManagerImpl extends CrudManagerImpl<TemplateRepository, Tem
     }
 
     @Override
-    public Template findByName(String name) {
-        Template template = new Template();
-        template.setName(name);
-        return mongoRepository.findOne(Example.of(template)).orElseThrow(DataManipulateException::new);
+    public void delete(String id) throws DataManipulateException {
+        Template template = super.findOrThrow(id);
+        if (SPECIAL.equals(template.getType())) {
+            throw new DataManipulateException("Given template (" + template + ") can not be deleted. " +
+                    "No special template required.");
+        }
+        super.delete(id);
     }
 }

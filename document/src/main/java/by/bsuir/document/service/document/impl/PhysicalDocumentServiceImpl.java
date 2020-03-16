@@ -1,12 +1,13 @@
 package by.bsuir.document.service.document.impl;
 
 import by.bsuir.core.exceptions.DataManipulateException;
-import by.bsuir.document.generator.DocumentGenerator;
+import by.bsuir.document.lowlevel.DocumentOperations;
 import by.bsuir.document.model.template.CompositeTag;
 import by.bsuir.document.model.template.Tag;
 import by.bsuir.document.model.template.Template;
 import by.bsuir.document.processor.TagProcessor;
 import by.bsuir.document.service.document.PhysicalDocumentService;
+import by.bsuir.document.service.tag.CompositeTagManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ import java.util.Map;
 @AllArgsConstructor
 @Service
 public class PhysicalDocumentServiceImpl implements PhysicalDocumentService {
-    private DocumentGenerator generator;
     private Map<Tag, TagProcessor> tagProcessors;
+    private CompositeTagManager compositeTagManager;
 
     @Override
     public void generate(Template template, Map<Tag.Param, String> params, String outputPath) {
@@ -35,8 +36,9 @@ public class PhysicalDocumentServiceImpl implements PhysicalDocumentService {
             tagValues.put(tag.name(), processor.process(params));
         }
 
-        List<CompositeTag> compositeTags = template.getCompositeTags();
-        for (CompositeTag compositeTag : compositeTags) {
+        List<String> compositeTags = template.getCompositeTags();
+        for (String compositeTagId : compositeTags) {
+            CompositeTag compositeTag = compositeTagManager.findOrThrow(compositeTagId);
             List<Tag> innerTags = compositeTag.getTags();
             Object compositeTagValue = innerTags.stream()
                     .map(innerTag -> {
@@ -53,6 +55,11 @@ public class PhysicalDocumentServiceImpl implements PhysicalDocumentService {
             tagValues.put(compositeTag.getId(), compositeTagValue);
         }
 
-        generator.generateDocument(template.getPath(), outputPath, tagValues);
+        DocumentOperations.generate(template.getPath(), outputPath, tagValues);
+    }
+
+    @Override
+    public void open(String path) {
+        DocumentOperations.open(path);
     }
 }

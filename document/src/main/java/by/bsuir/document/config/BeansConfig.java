@@ -5,10 +5,9 @@ import by.bsuir.document.processor.TagProcessor;
 import by.bsuir.document.processor.impl.*;
 import by.bsuir.document.processor.impl.communication.MailProcessor;
 import by.bsuir.document.processor.impl.communication.PhoneProcessor;
-import by.bsuir.document.service.tag.DelayFormatService;
-import by.bsuir.registry.service.CommunicationManager;
-import by.bsuir.registry.service.PersonManager;
-import by.bsuir.registry.service.PropertyManager;
+import by.bsuir.document.processor.impl.fullname.FamilyProcessor;
+import by.bsuir.document.processor.impl.fullname.FamilyToProcessor;
+import by.bsuir.document.processor.impl.id.IdProcessor;
 import com.ibm.icu.text.RuleBasedNumberFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,32 +32,68 @@ public class BeansConfig {
 
     @Bean
     public DateTimeFormatter dateTimeFormatter() {
-        return DateTimeFormatter.ofPattern("dd.mm.yyyy");
+        return DateTimeFormatter.ofPattern("dd.MM.yyyy");
     }
 
     @Autowired
-    private DelayFormatService delayFormatService;
+    private AtpProcessor atpProcessor;
     @Autowired
-    private PersonManager personManager;
+    private IdProcessor idProcessor;
     @Autowired
-    private PropertyManager propertyManager;
+    private FamilyProcessor familyProcessor;
     @Autowired
-    private CommunicationManager communicationManager;
+    private FamilyToProcessor familyToProcessor;
+    @Autowired
+    private PaspProcessor paspProcessor;
+    @Autowired
+    private BoxSqProcessor boxSqProcessor;
+    @Autowired
+    private FioProcessor fioProcessor;
+    @Autowired
+    private InvProcessor invProcessor;
+    @Autowired
+    private MailProcessor mailProcessor;
+    @Autowired
+    private PhoneProcessor phoneProcessor;
+    @Autowired
+    private PnProcessor pnProcessor;
+    @Autowired
+    private PdProcessor pdProcessor;
+    @Autowired
+    private PwProcessor pwProcessor;
+    @Autowired
+    private OrgNameProcessor orgNameProcessor;
+    @Autowired
+    private PanProcessor panProcessor;
+    @Autowired
+    private PresidentProcessor presidentProcessor;
+    @Autowired
+    private IndexProcessor indexProcessor;
+    @Autowired
+    private EliminPeriodProcessor eliminPeriodProcessor;
 
     @Bean
     public Map<Tag, TagProcessor> tagProcessors() {
         Map<Tag, TagProcessor> processors = new EnumMap<>(Tag.class);
-        processors.put(ATP, new AtpProcessor(delayFormatService));
-        processors.put(PN, new PnProcessor(personManager));
-        processors.put(FAMILY, new FamilyProcessor(personManager));
-        processors.put(PASP, new PaspProcessor(personManager));
-        processors.put(BOX_SQ, new BoxSqProcessor(propertyManager));
-        processors.put(FIO, new FioProcessor());
-        processors.put(INV, new InvProcessor(propertyManager));
-        processors.put(MAIL, new MailProcessor(communicationManager));
-        processors.put(PD, new PdProcessor(personManager, dateTimeFormatter()));
-        processors.put(PHONE, new PhoneProcessor(communicationManager));
-        processors.put(PW, new PwProcessor(personManager));
+        processors.put(ATP, atpProcessor);
+        processors.put(PN, pnProcessor);
+        processors.put(FAMILY, familyProcessor);
+        processors.put(FAMILY_TO, familyToProcessor);
+        processors.put(PASP, paspProcessor);
+        processors.put(BOX_SQ, boxSqProcessor);
+        processors.put(FIO, fioProcessor);
+        processors.put(INV, invProcessor);
+        processors.put(MAIL, mailProcessor);
+        processors.put(PD, pdProcessor);
+        processors.put(PHONE, phoneProcessor);
+        processors.put(PW, pwProcessor);
+        processors.put(AN, idProcessor);
+        processors.put(ORG_NAME, orgNameProcessor);
+        processors.put(PAN, panProcessor);
+        processors.put(PRESIDENT, presidentProcessor);
+        processors.put(IND_DOG, idProcessor);
+        processors.put(INDEX, indexProcessor);
+        processors.put(ELIMIN_PERIOD, eliminPeriodProcessor);
         return processors;
     }
 }

@@ -3,7 +3,7 @@ package by.bsuir.rest.registry.controller;
 import by.bsuir.registry.model.Communication;
 import by.bsuir.registry.service.CommunicationManager;
 import by.bsuir.rest.common.mapper.EntityMapper;
-import by.bsuir.rest.registry.IDValidationGroup;
+import by.bsuir.rest.common.IDValidationGroup;
 import by.bsuir.rest.registry.model.CommunicationEntity;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +39,17 @@ public class CommunicationController extends BaseController<CommunicationManager
     )
     public ResponseEntity<Collection<CommunicationEntity>> getByPersonId(@PathVariable("id") String personID) {
         return ResponseEntity.ok(baseManager.findByPersonId(personID).stream().map(entityMapper::toDto).collect(Collectors.toList()));
+    }
+
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            path = "/person",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public ResponseEntity<Collection<CommunicationEntity>> getByPersonIds(@RequestBody Collection<String> personIDs) {
+        return ResponseEntity.ok(baseManager.findByPersonId(personIDs).stream().map(entityMapper::toDto).collect(Collectors.toList()));
     }
 
 }

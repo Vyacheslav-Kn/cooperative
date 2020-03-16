@@ -36,9 +36,10 @@ public class Person {
     private String documentType;
     @Field
     private PassportData passportData;
+    @Field
+    private String livingAddress;
 
     // TODO: 12.03.2020
-    //  - Add living address
     //  - Fix frontend
 
     @Data

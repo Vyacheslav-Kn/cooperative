@@ -26,6 +26,9 @@ public class Property {
     @Indexed(unique = true)
     private final String inventoryNumber;
 
+    @Field
+    private final String ptn;
+
     // TODO: 12.03.2020
     //  - Add apartment number property
     //  - Add Certificate of state registration (number, registration date)
@@ -43,16 +46,17 @@ public class Property {
     @NotNull
     private final List<HistoryPropertyOwner> historyOwners;
 
-    private Property(@NotNull String inventoryNumber, @NotNull double square, @NotNull Collection<PropertyOwner> owners, @NotNull Collection<HistoryPropertyOwner> historyOwners) {
+    public Property(@NotNull String inventoryNumber, String ptn, double square, @NotNull Collection<PropertyOwner> owners, @NotNull Collection<HistoryPropertyOwner> historyOwners) {
         this.inventoryNumber = inventoryNumber;
+        this.ptn = ptn;
         this.square = square;
         this.owners = List.copyOf(owners);
         this.historyOwners = List.copyOf(historyOwners);
     }
 
     @PersistenceConstructor
-    public Property(@NotNull String id, @NotNull String inventoryNumber, @NotNull double square, @NotNull Collection<PropertyOwner> owners, @NotNull Collection<HistoryPropertyOwner> historyOwners) {
-        this(inventoryNumber, square, owners, historyOwners);
+    public Property(@NotNull String id, @NotNull String inventoryNumber, @NotNull double square, @NotNull Collection<PropertyOwner> owners, @NotNull Collection<HistoryPropertyOwner> historyOwners, String ptn) {
+        this(inventoryNumber, ptn, square, owners, historyOwners);
         this.id = id;
     }
 
@@ -72,6 +76,10 @@ public class Property {
         return square;
     }
 
+    public String getPtn() {
+        return ptn;
+    }
+
     public String getInventoryNumber() {
         return inventoryNumber;
     }
@@ -89,11 +97,16 @@ public class Property {
         @NotNull
         private final double owningPercent;
 
+        @Field
+        @NotNull
+        private final String numberAuthority;
+
         @PersistenceConstructor
-        public PropertyOwner(@NotNull String personId, @NotNull long startDate, @NotNull double owningPercent) {
+        public PropertyOwner(@NotNull String personId, @NotNull long startDate, @NotNull double owningPercent, String numberAuthority) {
             this.personId = personId;
             this.startDate = startDate;
             this.owningPercent = owningPercent;
+            this.numberAuthority = numberAuthority;
         }
 
         @Override
@@ -109,6 +122,10 @@ public class Property {
         @Override
         public int hashCode() {
             return Objects.hash(getPersonId(), getStartDate(), getOwningPercent());
+        }
+
+        public String getNumberAuthority() {
+            return numberAuthority;
         }
 
         public String getPersonId() {
@@ -131,8 +148,8 @@ public class Property {
         private final long endDate;
 
         @PersistenceConstructor
-        public HistoryPropertyOwner(@NotNull String personId, @NotNull long startDate, @NotNull double owningPercent, @NotNull long endDate) {
-            super(personId, startDate, owningPercent);
+        public HistoryPropertyOwner(@NotNull String personId, @NotNull long startDate, @NotNull double owningPercent, String numberAuthority, @NotNull long endDate) {
+            super(personId, startDate, owningPercent, numberAuthority);
             this.endDate = endDate;
         }
 

@@ -1,6 +1,6 @@
 package by.bsuir.rest.registry.model;
 
-import by.bsuir.rest.registry.IDValidationGroup;
+import by.bsuir.rest.common.IDValidationGroup;
 import by.bsuir.rest.registry.controller.CommunicationController;
 import by.bsuir.rest.registry.controller.VicariousAuthorityController;
 import lombok.Data;
@@ -24,6 +24,7 @@ public class PersonEntity {
     @NotBlank
     private String documentType;
     private PassportData passportData;
+    private String livingAddress;
 
     public String getCommunications() {
         // HateOas isn't work with swagger......

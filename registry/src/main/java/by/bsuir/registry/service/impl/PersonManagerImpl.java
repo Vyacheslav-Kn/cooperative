@@ -27,7 +27,7 @@ public class PersonManagerImpl extends BaseManagerImpl<PersonRepository, Person>
 
     @Override
     public String getFullName(Person person) {
-        return person.getLastName() + person.getName() + person.getSurname();
+        return person.getSurname() + " " + person.getName() + " " + person.getLastName();
     }
 
 }

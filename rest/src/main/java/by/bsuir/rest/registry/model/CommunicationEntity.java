@@ -1,6 +1,6 @@
 package by.bsuir.rest.registry.model;
 
-import by.bsuir.rest.registry.IDValidationGroup;
+import by.bsuir.rest.common.IDValidationGroup;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

@@ -23,6 +23,10 @@ public class CompositeTag {
 
     @Field
     @NotNull
+    private EntityType type;
+
+    @Field
+    @NotNull
     private String name;
 
     @Field

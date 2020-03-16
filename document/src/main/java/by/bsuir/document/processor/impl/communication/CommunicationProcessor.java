@@ -13,6 +13,8 @@ import java.util.Map;
 import static by.bsuir.document.model.template.Tag.Param.PROPERTY_ID;
 
 /**
+ * General functionality for {@link Communication} processors.
+ *
  * @author Vladislav Novitskiy
  */
 @AllArgsConstructor

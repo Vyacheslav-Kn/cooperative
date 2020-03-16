@@ -20,4 +20,10 @@ public class SupervisorServiceImpl extends CrudServiceImpl<SupervisorRepository,
     public SupervisorEntity getLast() {
         return repository.findTopByOrderByIdDesc();
     }
+
+    @Override
+    public String getSurnameAndInitials(SupervisorEntity supervisorEntity) {
+        return supervisorEntity.getSurname() + " " + supervisorEntity.getName().charAt(0) + ". "
+                + supervisorEntity.getPatronymic().charAt(0) + ".";
+    }
 }

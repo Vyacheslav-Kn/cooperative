@@ -3,6 +3,7 @@ package by.bsuir.document.processor.impl;
 import by.bsuir.document.model.template.Tag;
 import by.bsuir.document.processor.TagProcessor;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author Vladislav Novitskiy
  */
 @AllArgsConstructor
+@Component
 public class FioProcessor implements TagProcessor {
 
     @Override

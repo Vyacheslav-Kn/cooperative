@@ -37,6 +37,16 @@ public class StateRegistrationOfLegalEntity {
     @Field
     private String belarusianShortName;
 
+    // TODO: 15.03.2020
+    //  - Remove short names
+    //  - Rename full names to names
+    //  - Add organization type (full and short)
+    //  - Fix db
+    //  - Fix back
+    //  - Fix front
+    //  - Create full name by organization full type and name
+    //  - Create short name by organization short type and name
+
     @Field
     private Date registrationDate;
 

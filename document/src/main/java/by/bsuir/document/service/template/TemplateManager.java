@@ -9,5 +9,4 @@ import by.bsuir.document.model.template.Template;
  * @author Vladislav Novitskiy
  */
 public interface TemplateManager extends CrudManager<Template> {
-    Template findByName(String name);
 }
